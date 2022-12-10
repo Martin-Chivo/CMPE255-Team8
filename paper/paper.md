@@ -103,8 +103,49 @@ description of your data set, the results you found (formatted as either tables 
 
 ## 4C Discussion of Results
 
+# 5 Future Work
 
-# 5 Conclusion
+## 5A Conformance Analysis
+
+Once we have developed a process model either extracted through process discovery, or built on some reference guidelines. It would be interesting to investigate further into conformance checking to see how well the data fits the model, while in turn would help us evaluate and improve on the model.
+
+This can be done with a method called token-based replay (TBR) on the Petri-net converted from the process model. For each trace, we would try to see if it can be executed on the petri-net in a mathematically sound way, keeping track of additional tokens added to avoid deadlock, and check for unused tokens at completion. We define the total fitness simply as the percentage of traces that fit the model. Another technique is alignment analysis, which is similar to TBR, except that events of a trace are aligned to a legal and model-fitting trace trajectory subject to certain cost functions. TBR and alignment analysis would both identify non-conformance, but the latter is more informative, although it comes at the expense of runtime complexity. Behavior analysis entails the analysis of concepts that are present in the event log but either impossible or expensive to capture in the event formalism (e.g. the person who submits the request cannot be the same person who approves). These techniques can be used to better identify the hows and whys of non-conformance, and to build better models.
+
+
+Getting to 100% total fitness is not necessarily a desired goal. Instead, what we seek is a tradeoff. On the one hand, you want the model to be robust enough to elegantly explain the process. On the other hand, we do not want to over-build the model to make it so complex that it is hard to reason about.
+Let’s use our specific problem as an example. We ran an experiment to examine such relationships. We ran the inductive miner on different values of k, where k is the number of top variants we used to build the model.
+And we ran the conformance check to get the total fitness, and wrote code to examine the model. In this figure, the red line is the total fitness, and the blue line is the size of the model. We see that, as we include more traces, the model gets more complex, but the fitness also improves. If we would include only the top 3 variants, we can explain 90% of the traces. But if we blindly up the ante to 18 variants, we can now account for 99% of the traces, but the model is 5 times bigger, and much harder to understand.
+
+
+<figure style='width:100%'>
+![](images/tradeoff.png)
+<figcaption align = "center">
+        <b>\phantom{..}Figure 3 \textit{Fitness and Complexity vs Top $k$ Variants.}
+</b>
+</figcaption>
+</figure>
+
+
+The sweat spots happen at k = 5, which can explain 96% of the traces. The heuristics map, shown in Figure 4, is quite easy to understand. And it can properly capture the submission, approval, rejection, resubmission, and the final payment.
+
+<figure style='width:100%'>
+![](images/heuristics_net_5.png)
+<figcaption align = "center">
+        <b>\phantom{..}Figure 4 \textit{Heuristics Net when using the Top 5 Variants.}
+</b>
+</figcaption>
+</figure>
+
+We have only scratched the surface of conformance analysis, as much more can be done.
+
+## 5B Machine Learning and Timely Analysis
+
+Another area of interest is to apply machine learning techniques to perform (1) flow analysis to predict likelihood of resubmission, rejection, payment delay, or over-budget based on other variables (time since submission, request amount, prior owner approval), and (2) timing analysis to determine mean-time-to-trace-completion. This provides important clues to administrators and employees alike about the time frame of payment in the best-case scenario.
+We are also interested in detecting non-compliance “as it happens” and sending alerts to administrators.
+
+
+
+# 6 Conclusion
 
 A brief conclusion
 
