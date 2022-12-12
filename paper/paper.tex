@@ -36,24 +36,24 @@
 
 \begin{abstract}
 This project is a process mining case study designed to
-identify patterns,
-delays and bottlenecks that obstruct the efficient flow of the process
+identify patterns and
+delays that obstruct the efficient flow of process
 activities. Specifically, our
 objective is to analyze event data logs from
 the travel reimbursement process at Eindhoven University of Technology
 (ETU/c), identify bottlenecks in the process, and
 seek improvement to its efficiency.
-We process and filter the event data, and then generate simplified and
-representative process models to help locate where
-the most time-consuming and impactful critical tasks are.
+We prepare and filter the event data, and then generate simplified and
+representative process models to locate
+the most time-consuming and impactful critical tasks.
 Our analysis suggests that
-improvement in the supervisor appproval and payment handling activities 
+improvement in the supervisor approval and payment handling activities 
 could significantly
 reduce the time processing the travel reimbursement.
 \end{abstract}
 
 \begin{IEEEkeywords}
-process mining, data mining, conformance, event logs, business intelligence
+process mining, data, conformance, event logs
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -73,12 +73,12 @@ an event log is
 basically a record of an activity performed with a timestamp embedded
 \cite{Proc2022}.
 
-As a result, there are plenty of oppportunities, through
+There are plenty of oppportunities, through
 proper supervision of business behavior, to identify and adjust
 tasks that are generating problems for the business processes
 \cite{LeAl1994}.
-One important technique to accomplish such goal is process mining, a
-specialized data analysis technique that reveal core business behavior
+One important technique towards such goal is process mining, a
+specialized data analysis technique that reveals core business behavior
 indicated by activity logs.
 Process mining would start with these event logs, extracting important
 information including the chronology of the activities
@@ -94,11 +94,11 @@ perspective.
 
 \subsection{Problem Description}
 
-In this process mining case study, we are tasked with
-studying a dataset with
+In our process mining case study, we investigated
+a dataset with
 real-life event log data from the travel reimbursement process at
 Eindhoven University of Technology (ETU/e). Through analyzing the event
-logs and mining the business process beneath the events, we seek to
+logs and mining the business process underlying the events, we seek to
 identify and suggest remedy to address deficiencies in the reimbursement
 process.
 The event logs provide a detailed record of the travel reimbursement process,
@@ -112,24 +112,20 @@ event log.
 Collectively, these information provided a substantial amount of detail
 into the process. 
 The data was obtained from 
-the annual Business Process Intelligence Challenge (BPI Challenge)
-as part of
-the 2020 International Conference on Process Mining held in Padova, Italy
-\cite{BPI2020}, and has been
-pre-processed and anonymized for research purpose.
+the annual BPI Challenge as part of
+the 2020 International Conference on Process Mining \cite{BPI2020}.
 
 Our approach to process mining is based on the work by
-Wil Van Der Aalst in his seminal paper titled simply
-``Process Mining,'' \cite{van2012},
+Wil van der Aalst in his seminal paper titled simply
+``Process Mining'' \cite{van2012},
 where process mining guidelines are detailed.
 A process mining implementation generally
 covers three main issues: (1) discovery, (2) conformance,
 and (3) enhancement.
 Our project focuses on discovery since it is the area
 that requires more effort and it is the most deterministic for the
-success of the analysis. That said, we shall also take a cursory
-look at conformance analysis as an aide to discovery,
- and to motivate our future work.
+success of the analysis. We will also take a cursory
+look at conformance as both an aide to discovery and future work.
 
 \subsection{Motivation}
 
@@ -141,8 +137,8 @@ as detailed earlier.
 
 Furthermore, we are very interested in the evaluation and application
 of a relatively new process mining technique based on
-the Python-based process mining library called \textsc{pm4py}
-developed by Berti, van Zelst, and van der Aalst \cite{BeZe2019}.
+\textsc{pm4py}, a Python process mining library
+developed by Berti et al.~\cite{BeZe2019}.
 According to the authors,
 \textsc{pm4py} is a modern, open-source, and emerging platform developed
 specifically for the data science community. Prior to the turn of the
@@ -152,33 +148,31 @@ since then a slew of software tools, both open-source
 (\textsc{prom} and \textsc{apromore}) and commercial
 (\textsc{disco}, \textsc{celonis}, and \textsc{processgold}),
 have been developed. Yet, many were proprietary, hard to extend,
-hiding behind graphical user interfaces, or (worst yet) all of the above.
+or hidden behind graphical user interfaces.
 The mindset of process mining
 tooling contrasted greatly with the modern philosophy of data science R\&D,
 which put significant emphasis on openness and extensibility.
 \textsc{pm4py} was developed to bridge the gap
-between old-style process mining and modern data science
+between process mining and modern data science
 capabilities including
 \textsc{pandas}, \textsc{numpy}, \textsc{scikit-learn}.
-
 We whole-heartedly
 agree with the assessment of the authors, and we look further at opportunities
-that the \textsc{pm4py} approach brought forward, including the
+that the \textsc{pm4py} approach brought forward, including
 the adoption of modern and rapidly evolving machine learning
 functionalities to process mining.
 
 
 \subsection{Approach Summary}
 
-The document is structured as follows: Section \ref{section-intro} provides details about
-process mining and its fundamentals; Section \ref{section-survey} presents an overview of
-our approach and related literature review; Sections \ref{section-technical}
-and \ref{section-methodology} analyzes the
-outcomes produced from our primary studies and research problem,
-and section \ref{section-models} focuses on the process models we built
-and the analysis that follows. Section \ref{section-future}
-refers to our discussion about future work. We will conclude our paper
-in \ref{section-conclusion}.
+The document is structured as follows: Sections \ref{section-intro} and
+\ref{section-survey}
+offer an introduction to process mining and a literature survey.
+Sections \ref{section-technical}, \ref{section-methodology} and
+\ref{section-models} describe the technical details of our methodology, as
+well as the results of our investigation. We will end the paper with
+future work in Section \ref{section-future} and conclusion in
+\ref{section-conclusion}.
 
 \section{Survey}
 \label{section-survey}
@@ -199,41 +193,40 @@ and the objective is to provides useful information
 with implication on the business processes, organizations, and people involved.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.4\textwidth]{images/image2a.png}}
+\centerline{\includegraphics[width=0.35\textwidth]{images/image2a.png}}
 \caption{General outline of process mining approach.}
 \label{fig-outline}
 \end{figure}
 
 Although information system databases capture important business data
-in the form of event logs, these systems do not
+in the form of event logs, they do not
 usually provide understanding of the data in a structural or systematic manner.
 Traditionally, process analysts must search for and
 retrieve the information directly from the system, and perform manual
 analysis to accomplish their specific objectives.
-Another way to put it is that event logs only possess
-the right information, but not necessarily the right insight, to determine the
-behavior of the system.
-Whether or not a process mining implementation is successful or
-applicable thus largely hinges on what it can do with the event logs
+To put it another way, event logs only possess
+the right information, but not the right insight.
+Whether or not a process mining implementation is successful or applicable
+thus largely hinges on what it can do with the event logs
 \cite{van2012}. As such, process mining approach must
 embrace three main actions (Figure \ref{fig-layout}):
 
 \begin{itemize}
 \item \textit{Discovery} --
-to create robust and representative process models through
+create robust and representative process models through
  analyzing event logs.
 
-\item \textit{Conformance} -- to verify and compare newly created
+\item \textit{Conformance} -- verify and compare newly created
 models against either the event logs or other predefined models
 to gain knowledge.
 
-\item \textit{Enhancement} -- to turn the analysis 
-models into insights and suggestions to overcome previously
+\item \textit{Enhancement} -- turn the analysis 
+into insights and suggestions to overcome previously
 detected problems.
 \end{itemize}
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.5\textwidth]{images/image1.png}}
+\centerline{\includegraphics[width=0.4\textwidth]{images/image1.png}}
 \caption{General outline of process mining approach.}
 \label{fig-layout}
 \end{figure}
@@ -241,25 +234,25 @@ detected problems.
 \subsection{Process Models}
 
 Many distinct data analysis approaches have been developed to discover
-processes from event logs. However, Petri nets\footnote{and the
+processes from event logs. However, \textsc{petri net}s\footnote{and the
 equivalent BPMN models and process trees} have become a
-widely adopted technique over other approaches \cite{Cook1998} due to their
+widely adopted technique over other methods \cite{Cook1998} due to their
 intuitiveness, mathematical soundness, and ease of analysis.
 Another approach utilizes Unified
-Modeling Language (UML) diagrams \cite{Sait2019}.
-In 2004, Van der Wilst et al.~described the 
-a novel algorithm
+Modeling Language (\textsc{uml}) diagrams \cite{Sait2019}.
+In 2004, van der Wilst et al.~described the 
+a break-through algorithm in process mining
 called \textsc{alpha miner}\cite{van2004} which
 is capable of depicting event data logs into
-work-flow diagrams, which can be translated to Petri nets.
+work-flow diagrams, which can be translated to \textsc{petri net}s.
 The success of \textsc{alpha miner} has inspired many follow-up publications,
 including a popular model
 called \textsc{flexible heuristic miner} \cite{Weij2006}.
 One main characteristic of this
-algorithm is to be highly permissive in controling statistical levels and
-threshold adjustment. In order to deal with the
+algorithm is its high level of configurability and flexibility.
+In order to deal with the
 massive number of events that actual information systems generate,
-Burattin et al. \cite{Bura2014} developed another extension to
+Burattin et al.~\cite{Bura2014} developed another extension to
 \textsc{heuristic miner} based on
 lossy counting, as well as a sliding window that effectively analyzes
 streams of real datasets.
@@ -270,17 +263,17 @@ Most process mining publications are dedicated mainly to the enhancement
 of novel methodologies and algorithms with significant emphasis on the
 control-flow discovery area \cite{van2004}. However, the public services area
 has been fruitful ground
-for process mining development research. For instance, a
-Genetic Miner approach was tested by Alves de Madeiros et al. \cite{deMe2007}
-in Dutch municipalities. Additionally, van del Aalst et al. \cite{RoDJ2009}
+for process mining deployment research. For instance, a
+genetic miner approach was tested by de Madeiros et al.~\cite{deMe2007}
+in Dutch municipalities. Additionally, van del Aalst et al.~\cite{RoDJ2009}
 applied an analysis of organizations in another municipality process.
-Rozinat et al. \cite{RoMa2009} evaluated process models in two different case
+Rozinat et al.~\cite{RoMa2009} evaluated process models in two different case
 studies on the public sector.
 Nonetheless, all these research
-applications are focused to validate and assess rather than enhance the
-process.
+applications were focused on validation and assessment,
+rather than to improve the process.
 
-Implementation of process mining approaches have also been deployed in
+Implementation of process mining approaches has also been done in
 the private domain. Distinct discovery approaches were
 deployed by Goedertier et al.~\cite{GoDW2011} in the field of
 telecommunication. Mans
@@ -291,15 +284,15 @@ to resolve the tracking of patients within the healthcare industry.
 \section{Technical Approach}
 \label{section-technical}
 
-We shall briefly describe our approach to answering the questions of
-where the bottlenecks are. We would start with a thorough analysis and
+We shall now briefly describe our approach to finding
+where the process bottlenecks are. We would start with a thorough analysis and
 cleaning of the event logs, and then
-build a model that best captures the behavior of the
+build models that best capture the behavior of the
 process, making the proper tradeoff
 between robustness (does the model capture the intent of the process),
 and coverage (what fraction of the use cases are captured).
  Then, we will use the
-chosen model to answer the questions we have in mind.
+chosen models to answer the questions we have in mind.
 
 We shall note that process mining is a relatively new techniques, and
 as such we spent a disproportional amount of time ramping up the project.
@@ -308,50 +301,54 @@ its focus on algorithmic discovery and availability
 on Python, it is
 essentially still an academic software in its nascent stage, and 
 hence suffers from instability. There is still plenty of room for
-improvement in areas such as lack of control in visualization and
+improvement, such as a lack of control in visualization and
 presentation, scanty documentation, and signs of immaturity in API design.
 
 \section{Methodology}
 \label{section-methodology}
 
-In this section we will discuss about data,
-how we preprocessed the data,
-which model we used, and how
-we reach the result and disscuss about the result.
+In this section we will discuss about the data, 
+how we preprocessed it, what model we used, and how
+we reached the results and the insight we obtained.
 
 \subsection{Description of the Dataset}
 
 After a thorough review of what our tasks entail, we decided to focus
 exclusively on the domestic and international travel event logs in order
-to identify the process bottleneck.  Both event logs
-were provided to us in XES format,
-an XML-based standard for event logs \cite{XES2021}, which can
+to identify the process bottlenecks.  Both event logs
+were provided to us in \textsc{xes} format,
+an \textsc{xml}-based standard for event logs \cite{XES2021}, which can
 be easily parsed using \textsc{pm4py}.
 The events are organized as a two-level hierarchy as follows:
-An event log is made of a collection of cases
+An event log is made of a list of cases
 (also known as traces in technical
-term), and each case is made of a collection of events. Both cases and
-events are extensible constructs to allow for maximum flexibility in
-modeling events for different needs.
+term), and each case is made of a list of events. Cases and
+events are both extensible constructs to allow for maximum flexibility in
+event modeling.
 
 The event logs provide a detailed record of the travel reimbursement process,
 including important attributes such as identification, resource,
-timestamp, permits, payment and budgetting information, and event labels.
+timestamp, permits, payment and budgeting information, and event labels.
 Students or staff would submit their reimbursement application,
 provide suppport documentation (if traveling internationally), wait for
+approval and payment, and resubmit a corrected request if rejected.
 
-As we imported the logs into Python via \textsc{pm4py}, in their simplest form the
-log is organized into a Python dataframe, a key construct of
+As the logs were imported into Python via \textsc{pm4py},
+they are represented as
+dataframes, a key construct of
 \textsc{pandas}, the popular Python Data Analysis Library. However, as
-dataframes are not hierarchical, \textsc{pm4py} flattene the log such that the
-cases, and case attributes, become attributes of events. Therefore, if
-there are $A_c$ case attributes in the case, and $A_e$ event attributes in the
-XML specification, after \textsc{pm4py} import, we obtain a dataframe 
-with $N$ observations, a total of $A_c + A_e$ attributes.
+dataframes are not hierarchical, \textsc{pm4py} flattene the log so that 
+the enclosing case and the case attributes
+become attributes of an event. If
+there were $A_c$ attributes associated with a
+case, and $A_e$ event attributes in the
+\textsc{xes} specification, after \textsc{pm4py} import, we would obtain a
+\textsc{pandas} dataframe 
+with $N$ events, each with a total of $A_c + A_e$ attributes.
 
 In our project,
 the domestic process log is organized differently than
-the international process log.  For domestic trip, an employee would first
+the international process log.  For domestic trips, employees would first
 complete the trip and then ask for reimbursement. On the other hand,
 the policy for international trips mandates that
 employees first obtain travel permits from the supervisor prior to
@@ -365,53 +362,34 @@ each, and international cases have additional 13 attributes, together
 with the 5 attributes shared with domestic cases
 (\texttt{id}, \texttt{concept:name}, \texttt{BudgetNumber},
 \texttt{DeclarationNumber}, \texttt{Amount}), for a total of 18 attributes.
-In either case,
-the raw event in the XES hierarchy has the same 5 attributes
+Regardless of the type of trip,
+the event in the \textsc{xes} hierarchy has the same 5 attributes
 (\texttt{id}, \texttt{org:resource}, \texttt{concept:name},
 \texttt{time:timestamp}, and \texttt{org:role}).
-After flattening, we
-have the domestic dataframe with $56437$ events and $5+5=10$ attributes, and
-the international dataframe with $72151$ events and $18+5=23$ attributes.
+After flattening, \textsc{pm4py} returned a
+domestic dataframe with $56437$ events and $5+5=10$ attributes, and
+an international dataframe with $72151$ events and $18+5=23$ attributes.
 To avoid namespace collision, all case attributes were prefixed with
 \texttt{case:} by \textsc{pm4py} (for example, the \texttt{id} field of a case
-became \texttt{case:id} after flattening). Please refer to Tables
-\ref{table-event}, 
-\ref{table-domestic}, and
-\ref{table-international} for a complete list of attributes:
+became \texttt{case:id}). Please refer to Table
+\ref{table-event} for the complete list of attributes:
 
 \begin{table}[htbp]
 \caption{XES Event Attributes (5 Total)}
-% \vspace{-1em}
+\vspace{-1em}
 \begin{center}
 \begin{verbatim}
+  XES Event Attributes (5 Total)
     ---------------------------------------------------------
     id, org:resource, concept:name, time:timestamp, org:role
     ---------------------------------------------------------
-\end{verbatim}
-\end{center}
-\label{table-event}
-\end{table}
 
-% \vspace{-1em}
-\begin{table}[htbp]
-\caption{XES Domestic Case Attributes (5 Total)}
-% \vspace{-1em}
-\begin{center}
-\begin{verbatim}
+  XES Domestic Case Attributes (5 Total)
     ---------------------------------------------------------
     id, concept:name, BudgetNumber, DeclarationNumber, Amount
     ---------------------------------------------------------
-\end{verbatim}
-\end{center}
-\label{table-domestic}
-\end{table}
 
-% \vspace{-1em}
-\begin{table}[htbp]
-\caption{XES International Cases (18 fields)}
-% \vspace{-1em}
-\begin{center}
-\begin{verbatim}
+  XES International Cases (18 fields)
     ---------------------------------------------------------
     Permit travel permit number, DeclarationNumber, Amount,
     RequestedAmount, Permit TaskNumber, Permit BudgetNumber,
@@ -422,22 +400,25 @@ became \texttt{case:id} after flattening). Please refer to Tables
     ---------------------------------------------------------
 \end{verbatim}
 \end{center}
-\label{table-international}
+\vspace{-1em}
+\label{table-event}
 \end{table}
 
-\subsection{Data Preprocessing I -- Missing Values}
 
 % Unique noise coming from outside processes, difficult to identify.
 % Cannot use statistics to view outliers. There were no null or missing values.
 
-Prior to process mining, we performed a thorough evaluation of the
-domestic and international dataframes to ensure the best possible starting
+Prior to process mining, we performed a thorough cleaning of the
+domestic and international dataframes to ensure we have
+the best possible starting
 point for analysis. There were three categories of modification we applied
 to the datasets:
 
+\subsection{Data Preprocessing I -- Missing Values}
+
 While we did not find any missing value per se (as far
-as what \textsc{pandas} is concerned), we did find columns with values of
-the form ``\texttt{UNKNOWN}'' or ``\texttt{MISSING}'' as string. We
+as what \textsc{pandas} is concerned), we did find columns with string values
+\textsc{unknown} or \textsc{missing}. We
 carefully evaluated what to do with these attributes on a case-by-case
 basis. For example, we could drop the column (attribute), drop the row
 (event), fill the missing values, or simply ignore the column.
@@ -454,18 +435,18 @@ without any associated permit violated the very fundamental assumption
 about the international reimbursement process, that there is a permit
 associated with the trip. Note that the decision to drop these entries was
 not ``lossy'', because international reimbursement request without a permit
-number \underline{should} have been rejected and not entered into the system
+number \textit{should} have been rejected and not entered into the system
 in the first place.
 
 \subsection{Data Preprocessing II -- Duplicated Attributes}
 
 Perhaps due to prior inconsistency between
 versions of the enterprise software, there are fields that are similar
-or duplicate of each other. For example, \texttt{Permit ID}, \text{Permit id},
-and \texttt{Permit travel permit number} may refer to the same thing.
-Moreover, it is more than likely that exactly one of the three fields were
-filled, while the other two had missing values (or reported as
-``\texttt{MISSING}''. We combined these similar fields into one, picking out
+or duplicate of each other. For example, \texttt{Permit ID}, \texttt{Permit id},
+and \texttt{Permit travel permit number} are one and the same.
+Moreover, it is quite likely that exactly one of the three fields were
+filled, while the others are missing (or reported as
+\textsc{MISSING}. We combined these similar fields into one, picking out
 the value from the non-missing column, and dropped the duplicates. Note that 
 we performed this duplicate analysis prior to future treatment of missing
 values.
@@ -474,11 +455,11 @@ As a result of these cleaning procedures, the size of the
 the international dataframe was reduced from 72151 to 43707 (a 60\% drop),
 with the
 missing permit accounting for 95\% of such reduction. The number of
-columns was reduced from 23 to 19, having dropped
+columns was reduced from 23 to 19, since we dropped
 several permit-related columns that are duplicates.
-
-The domestic dataframe was also modified to a much small extent. The
-number of events was reduced from 55087, a mere 2\% drop.
+Similarly, the domestic dataframe was also modified to a much small extent.
+The number of events was reduced from 55087, a mere 2\% drop, and the
+number of columns stayed the same.
 
 \subsection{Data Preprocessing III -- Infrequent Events}
 
@@ -486,42 +467,44 @@ Process models that can explain all possible event traces could be
 arbitrarily complex. For example, obviously we would expect reimbursement to
 be paid out only after the request was approved. But what if there is
 a trace with a missing approval due to erroneous logging? A process model
-built to handle 100\% of traces must then be able to handle a flow with
-payment before request. Not only would the model be complex and clumsy,
-it would also fail our objective.
+built to handle 100\% of traces must handle a flow with
+payment before request, however bizzare such trace is.
+Not only would the model be more complex and unwieldy,
+it would also be incorrect and fail our objective.
 
-A naive approach is to remove events that are uncommon, but doing so may
-not be sufficient. For example, using the previous example,
+A naive approach would be to remove events that are uncommon, but doing so may
+not be sufficient. Consider the previous example;
 while \textsc{request approved} that happened after \textsc{payment handled}
 might be a rare sequence, neither of these events were rare.
 
 In \textsc{pm4py} terminology, the variants of an event log is the
-union of all possible sequences of event execution. For example, there are
+union of all possible sequences of event execution (ignoring all but the
+event labels). For example, there were
 68 variants in the domestic log, and 464 variants in the international log.
 In fact, the above example
 points to the need to remove traces that are uncommon. Clearly, it could
 be beneficial to have the choice to build the process model based on
-only the most popular traces. In fact, this was an important part of our
+only the most popular traces. Indeed, this was an important part of our
 methodology and we shall take a closer look in the next section.
 
 \section{Models and Results}
 \label{section-models}
 
 
-With the event logs new well understood and properly prepared, we are now
-ready to consider building the actual process model.
+With the event logs well understood and properly prepared, we are now
+ready to build the actual process model.
 
-\subsection{Choice of Models}
+\subsection{Choice of Model}
 
 We must first answer the
-question of what formal model to use. Our choices include BPMN\footnote{BPMN stands for Business Process Model Notation}  model,
-process tree, Petri net, and Directly-Follows Graph (DFG). The
+question of what formal model to use. Our choices include \textsc{bpmn}\footnote{\textsc{bpmn} stands for Business Process Model Notation}  model,
+process tree, \textsc{petri net}, and Directly-Follows Graph (\textsc{dfg}). The
 first three are mathematically equivalent and inter-changeable. On the other
-hand, DFG shows a different view of BPMN graph constructed by aggregrating all possible link
+hand, \textsc{dfg} shows a different view of \textsc{bpmn} graph constructed by aggregrating all possible link
 between any pair of events that follows each other.
 
-There are pros and cons in choosing Petri net vs DFG. DFGs can be constructed
-directly from the event logs, and are simple to understand. Petri nets (as well
+There are pros and cons in choosing \textsc{petri net} vs \textsc{dfg}. \textsc{dfg}s can be constructed
+directly from the event logs, and are simple to understand. \textsc{petri net}s (as well
 as the equivalents) can only be generated heuristically, for example, 
 through inductive or heuristics miners (which \textsc{pm4py} supports).
 The difference mainly lies on how concurrency is handled. For example,
@@ -529,47 +512,55 @@ say there are two activities $X$ and $Y$ that are sandwiched between
 $A$ and $B$. In other words, the following are both legitimate sequence
 of executions:
 
+\vspace{0.5em}
 $\phantom{xxxxx}A \rightarrow X \rightarrow Y \rightarrow B$
 
 $\phantom{xxxxx}A \rightarrow Y \rightarrow X \rightarrow B$
+\vspace{0.5em}
 
 
-While both Alpha Miner and Inductive Miner would correctly deduct
+While both \textsc{alpha miner} and \textsc{inductive miner} would correctly deduct
 (probabilistically) that $X$ and $Y$ have no inter-dependency but are
-instead concurrent events, DFG would not be able to discern that, because
+instead concurrent events, \textsc{dfg} would not be able to discern that, because
 all it saw was $Y$ directly follows $X$ in the first example, and
-$X$ directly follows $Y$ in the second. As a result, concurrency would
-show up in DFGs as tight loops between two activities, yet there is no
-way to prove that tight loops imply concurrency. As a result, if DFGs
+$X$ directly follows $Y$ in the second. Thus, concurrency would
+show up in \textsc{dfg}s as tight loops between two activities, yet there is no
+way to prove that tight loops imply concurrency. If indeed \textsc{dfg}s
 become too complicated, they will confuse rather than aide reasoning.
 
 For our purpose, however, we still believe 
-is the preferred approach as the statistics on the edges of a DFG can be
+is the preferred approach as the statistics on the edges of a \textsc{dfg} can be
 made readily available, and more easily reasoned with. We just need to make
 sure we have a model that is not too complicated.
+This speaks to the importance of limiting the model size, which we shall
+discuss next.
+
+\subsection{Choice of Model Size}
 
 How many top variants do we use to build the model?
 We did experiment with different values of $k$, where $k$ is the number of
-top variants (of the cleaned dataframe) to be used to build the DFG. We
-evaluated many factors, though somewhat informally, and came to the conclusion
-that we got the best balance between coverage and robustness if
+top variants to be used to build the \textsc{dfg}. We
+evaluated many factors, though more qualitatively than otherwise,
+and came to the conclusion
+that we would achieve the best balance between coverage and robustness if
 we keep approximately 15 to 25\% of the top variants, depending on data
 (higher for domestic, and lower for international). Figures~\ref{fig-domestic}
-and \ref{fig-international} shows the DFG models we picked for
+and \ref{fig-international} shows the \textsc{dfg} models we picked for
 domestic and international reimbursement respectively. In each figure,
-the DFG to the left is annotated with the number of directly following
-edges, and the DFG to the right is annotated with the mean duration between
-the two events.
+the \textsc{dfg} to the left is annotated with the number of directly following
+edges, and the \textsc{dfg} to the right is annotated with the mean duration between
+the two events. Both models captured the vast majority of the important
+interactions very well and were reasonably easy to comprehend.
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.70\textwidth]{images/domestic.png}}
-\caption{DFG Model for Domestic Reimbursement.}
+\centerline{\includegraphics[width=0.65\textwidth]{images/domestic.png}}
+\caption{\textsc{dfg} Model for Domestic Reimbursement.}
 \label{fig-domestic}
 \end{figure*}
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.70\textwidth]{images/international.png}}
-\caption{DFG Model for International Reimbursement.}
+\centerline{\includegraphics[width=0.65\textwidth]{images/international.png}}
+\caption{\textsc{dfg} Model for International Reimbursement.}
 \label{fig-international}
 \end{figure*}
 
@@ -580,21 +571,33 @@ Now that we have a robust process model built on reasonably clean data,
 we can now answer the question: 
 Where are the bottlenecks in the process of a travel declaration?
 
-The biggest bottleneck is the supervisor activities for both International
-and Domestic declarations. For the supervisor to do the final approval and
+The biggest bottleneck is the supervisor activities for both international
+and domestic declarations.  For the supervisor to do the final approval and
 request payment, it takes an average of 4 to 5 days.
-If we simply have to identify one activity, \textsc{Payment Handled}
+To find such bottleneck, we would identify that
+links with both high frequency \textit{and} long duration. Since the models
+are simple enough, we were able to visually inspect the models and identify
+such link. We did add code to work around \textsc{pm4py} and
+automatically identify such links.
+
+On the other hand, if we
+were to identify one activity, \textsc{Payment Handled}
 is the biggest bottleneck. That said,
 it might be outside of the organization’s control and may be more of a
 financial institution issue.
 
-Note that \textsc{pm4py} does not allow us to customize the performance
-graph output,
-instead, it rounds up the time to days instead of leaving it in an hour format. Also, \textsc{pm4py} does not have a method of superimposing the frequency and performance.
-
+% Note that \textsc{pm4py} does not allow us to customize the performance
+% graph output,
+% instead, it rounds up the time to days instead of
+% leaving it in an hour format.
+% Also, \textsc{pm4py} does not have a method of superimposing the
+% frequency and performance.
 
 \section{Future Work}
 \label{section-future}
+
+Now we shall look into two potential area of work in the future --
+conformance analysis and machine learning.
 
 \subsection{Conformance Analysis}
 
@@ -604,58 +607,61 @@ interesting to investigate further into conformance checking to see how
 well the data fits the model, while in turn would help us evaluate and
 improve on the model.
 
-This can be done with a method called token-based replay (TBR) on the
-Petri-net converted from the process model. For each trace, we would try
-to see if it can be executed on the petri-net in a mathematically sound
-way, keeping track of additional tokens added to avoid deadlock, and
-check for unused tokens at completion. We define the total fitness
-simply as the percentage of traces that fit the model. Another technique
-is alignment analysis, which is similar to TBR, except that events of a
-trace are aligned to a legal and model-fitting trace trajectory subject
-to certain cost functions. TBR and alignment analysis would both
-identify non-conformance, but the latter is more informative, although
-it comes at the expense of runtime complexity. Behavior analysis entails
-the analysis of concepts that are present in the event log but either
-impossible or expensive to capture in the event formalism (e.g.~the
-person who submits the request cannot be the same person who approves).
-These techniques can be used to better identify the hows and whys of
+This can be done with a method called token-based replay (\textsc{tbr}) on the
+\textsc{petri net} converted from the process model. For each trace, we would try
+to see if it can be simulated on the \textsc{petri net} which can be done
+precisely in a mathematically sound
+way. We define the total fitness
+simply as the percentage of traces that fit the model. Other techniques
+we can apply are 
+alignment analysis and behavior analysis, though
+they both come at the expense of higher runtime complexity.
+Together these techniques can be used to better identify the hows and whys of
 non-conformance, and to build better models.
-
-Getting to 100\% total fitness is not necessarily a desired goal.
+In conformance analysis,
+tetting to 100\% total fitness is not a desired goal, as explained earlier.
 Instead, what we seek is a tradeoff. On the one hand, you want the model
 to be robust enough to elegantly explain the process. On the other hand,
-we do not want to over-build the model to make it so complex that it is
-hard to reason about. Let's use our specific problem as an example. We
-ran an experiment to examine such relationships. We ran the inductive
-miner on different values of k, where k is the number of top variants we
-used to build the model. And we ran the conformance check to get the
-total fitness, and wrote code to examine the model. In this figure, the
+we do not want to over-build a model so complex that it is impossible to
+reason about.
+
+Let's use our specific problem as an example. We
+ran an experiment to examine the tradeoff between fitness and model
+complexity. We built the model multiple times with \textsc{inductive miner},
+each time on a different value of $k$, where $k$ is the number of top
+variants we
+used to build the model, and we recorded the total fitness via conformance
+check, as well as an estimate the complexity of the model computed using
+custom Python code.
+In Figure~\ref{fig-tradeoff}, the
 red line is the total fitness, and the blue line is the size of the
-model. We see that, as we include more traces, the model gets more
+model. We see that, as we include more top variants, the model gets more
 complex, but the fitness also improves. If we would include only the top
-3 variants, we can explain 90\% of the traces. But if we blindly up the
-ante to 18 variants, we can now account for 99\% of the traces, but the
-model is 5 times bigger, and much harder to understand.
+3 variants, we can already explain 90\% of the traces. But if we blindly
+crank up the knob to 
+18 variants, the model would now account for 99\% of the traces, but the
+it is 5 times bigger, and much harder to understand.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.45\textwidth]{images/tradeoff.png}}
+\centerline{\includegraphics[width=0.40\textwidth]{images/tradeoff.png}}
 \caption{Fitness and Complexity vs Top $k$ Variants.}
-\label{fig}
+\label{fig-tradeoff}
 \end{figure}
 
-The sweat spots happen at k = 5, which can explain 96\% of the traces.
+The sweat spots happen at $k = 5$, which can explain 96\% of the traces.
 Moreover,
-it can properly capture the submission, approval, rejection,
-resubmission, and the final payment.
+it was able to properly capture the submission, approval, rejection,
+resubmission, and the final payment. It represents the best tradeoff
+between fitness and model complexity. It would be interesting to further
+expand the idea of conformance checking as a way to help build the model,
+and we have only just scratched the surface.
+
 
 %\begin{figure}[htbp]
 %\centerline{\includegraphics[width=0.45\textwidth]{images/heuristics_net_5.png}}
 %\caption{Heuristics Net when using the Top 5 Variants.}
 %\label{fig}
 %\end{figure}
-
-We have only scratched the surface of conformance analysis, as much more
-can be done.
 
 \subsection{Machine Learning and Timely
 Analysis}
@@ -664,21 +670,29 @@ Another area of interest is to apply machine learning techniques to
 perform (1) flow analysis to predict likelihood of resubmission,
 rejection, payment delay, or over-budget based on other variables (time
 since submission, request amount, prior owner approval), and (2) timing
-analysis to determine mean-time-to-trace-completion. This provides
+analysis to determine the average expected time before the trace completes.
+This provides
 important clues to administrators and employees alike about the time
 frame of payment in the best-case scenario. We are also interested in
-detecting non-compliance ``as it happens'' and sending alerts to
+detecting non-compliance \textit{as it happens} and sending alerts to
 administrators.
 
 \section{Conclusion}
 \label{section-conclusion}
 
+In conclusion, we have completed a process mining case study and
+demonstrated the effectiveness of modern process mining techniques
+in identifying bottlenecks in the travel reimbursement
+process. We are encouraged by the power of the \textsc{pm4py} platform
+and expect much more research and development to go into process mining,
+especially in the direction of process discovery in the era of machine learning.
+
 \bibliographystyle{plain}
 \bibliography{paper}{}
 
-\begin{center}
-\noindent\rule{0.5\columnwidth}{0.4pt}
-\end{center}
+% \begin{center}
+% \noindent\rule{0.5\columnwidth}{0.4pt}
+% \end{center}
 
 \section{Contributions}
 
@@ -689,8 +703,8 @@ The following is a breakdown of our individual contributions:
 \begin{itemize}
 \item \textbf{Martin Alvarez-Lopez} -- advocated for the original proposal,
 and set the overall direction of the project. He contributed to
-data preparation, the main body of work on process mining, and gave the main
-part of the presentation.
+data preparation, the main body of work on process mining, prepared
+and gave the main part of the presentation.
 
 \item
 \textbf{Carlos Hernandez} -- wrote the first draft of the term paper,
@@ -703,8 +717,8 @@ worked on conformance analysis. He also migrated the paper to the IEEE
 template, and wrote the second half of the term paper.
 
 \item
-\textbf{Divyam Sobti} -- worked closely with Martin A.~on data preparation as
-well as the main investigation on process mining. He set up the CoLab
+\textbf{Divyam Sobti} -- worked closely with Martin A.~on data preparation and
+conducted the main investigation on process mining. He set up the CoLab
 environment, and contributed to report writing as well.
 
 \end{itemize}
