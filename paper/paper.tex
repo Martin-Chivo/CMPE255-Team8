@@ -35,7 +35,11 @@
 \maketitle
 
 \begin{abstract}
-The objective of this project is to analyze event data logs from
+This project is a process mining case study designed to
+identify patterns,
+delays and bottlenecks that obstruct the efficient flow of the process
+activities. Specifically, our
+objective is to analyze event data logs from
 the travel reimbursement process at Eindhoven University of Technology
 (ETU/c), identify bottlenecks in the process, and
 seek improvement to its efficiency.
@@ -90,12 +94,13 @@ perspective.
 
 \subsection{Problem Description}
 
-This project is a process mining case study designed to
-identify patterns,
-delays and bottlenecks that obstruct the efficient flow of the process
-activities. Specifically, we studied a dataset with
+In this process mining case study, we are tasked with
+studying a dataset with
 real-life event log data from the travel reimbursement process at
-Eindhoven University of Technology (ETU/e).
+Eindhoven University of Technology (ETU/e). Through analyzing the event
+logs and mining the business process beneath the events, we seek to
+identify and suggest remedy to address deficiencies in the reimbursement
+process.
 The event logs provide a detailed record of the travel reimbursement process,
 including important attributes such as identification, resource,
 timestamp, permits, payment and budgetting information, and event labels.
@@ -144,7 +149,8 @@ specifically for the data science community. Prior to the turn of the
 millenium,
 there were hardly any tooling for process mining, but
 since then a slew of software tools, both open-source
-(ProM and Apromore) and commercial (Disco, Celonis, and ProcessGold),
+(\textsc{prom} and \textsc{apromore}) and commercial
+(\textsc{disco}, \textsc{celonis}, and \textsc{processgold}),
 have been developed. Yet, many were proprietary, hard to extend,
 hiding behind graphical user interfaces, or (worst yet) all of the above.
 The mindset of process mining
@@ -153,7 +159,7 @@ which put significant emphasis on openness and extensibility.
 \textsc{pm4py} was developed to bridge the gap
 between old-style process mining and modern data science
 capabilities including
-\texttt{Pandas}, \texttt{NumPy}, \texttt{scikit-learn}.
+\textsc{pandas}, \textsc{numpy}, \textsc{scikit-learn}.
 
 We whole-heartedly
 agree with the assessment of the authors, and we look further at opportunities
@@ -270,63 +276,73 @@ in Dutch municipalities. Additionally, van del Aalst et al. \cite{RoDJ2009}
 applied an analysis of organizations in another municipality process.
 Rozinat et al. \cite{RoMa2009} evaluated process models in two different case
 studies on the public sector.
-
 Nonetheless, all these research
 applications are focused to validate and assess rather than enhance the
-process. Implementation of process mining approaches have been also
-developed in the private domain. Distinct discovery approaches were
-deployed by Goedertier et al. \cite{GoDW2011} in the telecom field. Also, Mans
-et al. \cite{MaSc2008} and Rebuge and Ferreira \cite{ReBu2012} created a convoluted
-process mining method to resolve the tracking of patients within the
-healthcare industry.
+process.
 
-The literature mentioned above provides the fundamentals of process mining from a general perspective. Each approach contributes significantly to the process mining study field, and in this paper, we focus on its application. 
+Implementation of process mining approaches have also been deployed in
+the private domain. Distinct discovery approaches were
+deployed by Goedertier et al.~\cite{GoDW2011} in the field of
+telecommunication. Mans
+et al.~\cite{MaSc2008} and Rebuge et al.~\cite{ReBu2012} both
+evaluated process mining methods
+to resolve the tracking of patients within the healthcare industry.
 
 \section{Technical Approach}
 \label{section-technical}
 
 We shall briefly describe our approach to answering the questions of
-where the bottlenecks are. We would first properly clean the event logs,
-and then build a model that best captures the behavior of the
-process (in other words, to mine the process), making the proper tradeoff
-between robustness, accuracy, and coverage.  Then, we will use the
+where the bottlenecks are. We would start with a thorough analysis and
+cleaning of the event logs, and then
+build a model that best captures the behavior of the
+process, making the proper tradeoff
+between robustness (does the model capture the intent of the process),
+and coverage (what fraction of the use cases are captured).
+ Then, we will use the
 chosen model to answer the questions we have in mind.
 
 We shall note that process mining is a relatively new techniques, and
 as such we spent a disproportional amount of time ramping up the project.
-While \textsc{pm4py}, in essence an academic software,
-was a great choice compared to other proprietary enterprise software
-due to its focus on discovery algorithms and availability on Python,
-it was nonetheless relatively immature and early in its development, and
-hence suffered from instability. The visualization capability was clearly
-inadequate, and it offered very little flexibility as far as exploration
-is concerned.
+While we fully believe in the full potential of \textsc{pm4py} due to
+its focus on algorithmic discovery and availability
+on Python, it is
+essentially still an academic software in its nascent stage, and 
+hence suffers from instability. There is still plenty of room for
+improvement in areas such as lack of control in visualization and
+presentation, scanty documentation, and signs of immaturity in API design.
 
 \section{Methodology}
 \label{section-methodology}
 
-In this section we will discuss about data, how we preprocessed the data, which model we used, how we reach the result and disscuss about the result.
+In this section we will discuss about data,
+how we preprocessed the data,
+which model we used, and how
+we reach the result and disscuss about the result.
 
 \subsection{Description of the Dataset}
 
-After clear understanding of the question we got to know that we had to
- find bottleneck in travel declaration.
-After reviewing the data provided to us we  decided to go with the domestic
-and internation declaration.
-Both the dataset are in XES format,
-an XML-based standard for event logs \cite{XES2021}.
-It contains the information regarding the process that is
-they contains event log. The events are organized in a two-level hierarchy --
-the log is made of a collection of cases (also known as traces in technical
+After a thorough review of what our tasks entail, we decided to focus
+exclusively on the domestic and international travel event logs in order
+to identify the process bottleneck.  Both event logs
+were provided to us in XES format,
+an XML-based standard for event logs \cite{XES2021}, which can
+be easily parsed using \textsc{pm4py}.
+The events are organized as a two-level hierarchy as follows:
+An event log is made of a collection of cases
+(also known as traces in technical
 term), and each case is made of a collection of events. Both cases and
 events are extensible constructs to allow for maximum flexibility in
 modeling events for different needs.
 
-
+The event logs provide a detailed record of the travel reimbursement process,
+including important attributes such as identification, resource,
+timestamp, permits, payment and budgetting information, and event labels.
+Students or staff would submit their reimbursement application,
+provide suppport documentation (if traveling internationally), wait for
 
 As we imported the logs into Python via \textsc{pm4py}, in their simplest form the
 log is organized into a Python dataframe, a key construct of
-\texttt{Pandas}, the popular Python Data Analysis Library. However, as
+\textsc{pandas}, the popular Python Data Analysis Library. However, as
 dataframes are not hierarchical, \textsc{pm4py} flattene the log such that the
 cases, and case attributes, become attributes of events. Therefore, if
 there are $A_c$ case attributes in the case, and $A_e$ event attributes in the
@@ -420,7 +436,7 @@ point for analysis. There were three categories of modification we applied
 to the datasets:
 
 While we did not find any missing value per se (as far
-as what \texttt{Pandas} is concerned), we did find columns with values of
+as what \textsc{pandas} is concerned), we did find columns with values of
 the form ``\texttt{UNKNOWN}'' or ``\texttt{MISSING}'' as string. We
 carefully evaluated what to do with these attributes on a case-by-case
 basis. For example, we could drop the column (attribute), drop the row
@@ -546,13 +562,13 @@ edges, and the DFG to the right is annotated with the mean duration between
 the two events.
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.90\textwidth]{images/domestic.png}}
+\centerline{\includegraphics[width=0.70\textwidth]{images/domestic.png}}
 \caption{DFG Model for Domestic Reimbursement.}
 \label{fig-domestic}
 \end{figure*}
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.90\textwidth]{images/international.png}}
+\centerline{\includegraphics[width=0.70\textwidth]{images/international.png}}
 \caption{DFG Model for International Reimbursement.}
 \label{fig-international}
 \end{figure*}
