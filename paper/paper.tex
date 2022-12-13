@@ -17,9 +17,10 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{\textsc{Ferret Miner}: A Process Mining Case Study}
+\title{\textsc{Ferret Miner}: A Process Mining Case
+Study${}^\dagger$\thanks{${}^\dagger$~Github: \texttt{https://github.com/Martin-Chivo/CMPE255-Team8}; Google Drive: \texttt{shorturl.at/cgFIP}}}
 
-\author{\IEEEauthorblockN{Martin Alvarez-Lopez${}^1$\thanks{${}^1$ MS Candidate in Software Engineering, San José State University}}
+\author{\IEEEauthorblockN{Martin Alvarez-Lopez${}^1$\thanks{${}^1$~MS Candidate in Software Engineering, San José State University}}
 % \IEEEauthorblockA{San José State University}
 \and
 \IEEEauthorblockN{Carlos Hernandez${}^2$\thanks{${}^2$ MS Candidate in Computer Engineering, San José State University}}
@@ -64,8 +65,8 @@ Nowadays, most organizations use information systems to support
 the execution of their business processes, generating significant
 amounts of data.
 Mainstream information systems, such as Enterprise Resource
-Planning (ERP), Work on Management Systems (WMS), and Customer
-Relationship Management (CRM), have become vital tools behind the
+Planning (\textsc{erp}), Work on Management Systems (\texttt{wms}), and Customer
+Relationship Management (\textsc{crm}), have become vital tools behind the
 operation of almost 
 any company process\cite{Tuto2022}. All of these platforms
 offer rich event logging capabilities, in which
@@ -112,7 +113,7 @@ event log.
 Collectively, these information provided a substantial amount of detail
 into the process. 
 The data was obtained from 
-the annual BPI Challenge as part of
+the annual \textsc{bpi} Challenge as part of
 the 2020 International Conference on Process Mining \cite{BPI2020}.
 
 Our approach to process mining is based on the work by
@@ -375,7 +376,7 @@ became \texttt{case:id}). Please refer to Table
 \ref{table-event} for the complete list of attributes:
 
 \begin{table}[htbp]
-\caption{XES Event Attributes (5 Total)}
+\caption{XES Attributes for Events, and Domestic and Int'l Cases}
 \vspace{-1em}
 \begin{center}
 \begin{verbatim}
@@ -446,7 +447,7 @@ or duplicate of each other. For example, \texttt{Permit ID}, \texttt{Permit id},
 and \texttt{Permit travel permit number} are one and the same.
 Moreover, it is quite likely that exactly one of the three fields were
 filled, while the others are missing (or reported as
-\textsc{MISSING}. We combined these similar fields into one, picking out
+\textsc{missing}. We combined these similar fields into one, picking out
 the value from the non-missing column, and dropped the duplicates. Note that 
 we performed this duplicate analysis prior to future treatment of missing
 values.
@@ -553,13 +554,13 @@ the two events. Both models captured the vast majority of the important
 interactions very well and were reasonably easy to comprehend.
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.65\textwidth]{images/domestic.png}}
+\centerline{\includegraphics[width=0.55\textwidth]{images/domestic.png}}
 \caption{\textsc{dfg} Model for Domestic Reimbursement.}
 \label{fig-domestic}
 \end{figure*}
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.65\textwidth]{images/international.png}}
+\centerline{\includegraphics[width=0.55\textwidth]{images/international.png}}
 \caption{\textsc{dfg} Model for International Reimbursement.}
 \label{fig-international}
 \end{figure*}
@@ -619,7 +620,7 @@ they both come at the expense of higher runtime complexity.
 Together these techniques can be used to better identify the hows and whys of
 non-conformance, and to build better models.
 In conformance analysis,
-tetting to 100\% total fitness is not a desired goal, as explained earlier.
+getting to 100\% total fitness is not a desired goal, as explained earlier.
 Instead, what we seek is a tradeoff. On the one hand, you want the model
 to be robust enough to elegantly explain the process. On the other hand,
 we do not want to over-build a model so complex that it is impossible to
