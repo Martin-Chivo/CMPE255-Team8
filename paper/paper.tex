@@ -42,7 +42,7 @@ delays that obstruct the efficient flow of process
 activities. Specifically, our
 objective is to analyze event data logs from
 the travel reimbursement process at Eindhoven University of Technology
-(ETU/c), identify bottlenecks in the process, and
+(\textsc{tu/e}), identify bottlenecks in the process, and
 seek improvement to its efficiency.
 We prepare and filter the event data, and then generate simplified and
 representative process models to locate
@@ -65,7 +65,7 @@ Nowadays, most organizations use information systems to support
 the execution of their business processes, generating significant
 amounts of data.
 Mainstream information systems, such as Enterprise Resource
-Planning (\textsc{erp}), Work on Management Systems (\texttt{wms}), and Customer
+Planning (\textsc{erp}), Work on Management Systems (\textsc{wms}), and Customer
 Relationship Management (\textsc{crm}), have become vital tools behind the
 operation of almost 
 any company process\cite{Tuto2022}. All of these platforms
@@ -89,8 +89,8 @@ and then be used to detect errors and deficiencies in the process,
 and to provide insight and suggestions for process enhancement.
 Process mining is most closely related to data mining 
 amongst business intelligence disciplines. However,
-data mining concentrates on finding relationships among data,
-whereas process mining also looks at data from a systematic
+while data mining focuses on finding relationships among data,
+process mining also looks at data from a systematic
 perspective.
 
 \subsection{Problem Description}
@@ -98,20 +98,20 @@ perspective.
 In our process mining case study, we investigated
 a dataset with
 real-life event log data from the travel reimbursement process at
-Eindhoven University of Technology (ETU/e). Through analyzing the event
+Eindhoven University of Technology (\textsc{tu/e}). Through analyzing the event
 logs and mining the business process underlying the events, we seek to
-identify and suggest remedy to address deficiencies in the reimbursement
+identify and suggest remedies to address deficiencies in the reimbursement
 process.
 The event logs provide a detailed record of the travel reimbursement process,
-including important attributes such as identification, resource,
-timestamp, permits, payment and budgetting information, and event labels.
-Students or staff would submit their reimbursement application,
-provide suppport documentation (if traveling internationally), wait for
+including important attributes such as identification, resources,
+timestamp, permits, payment and budgeting information, and event labels.
+Students or staff would submit their reimbursement applications,
+provide suppport documentation (especially
+for international travels), wait for
 reimbursement decision and subsequent payment, and possibly deal with
-rejection and resubmission. All of these information is captured in the
-event log.
+rejection and resubmission.
 Collectively, these information provided a substantial amount of detail
-into the process. 
+into the reimbursement workflow. 
 The data was obtained from 
 the annual \textsc{bpi} Challenge as part of
 the 2020 International Conference on Process Mining \cite{BPI2020}.
@@ -119,54 +119,57 @@ the 2020 International Conference on Process Mining \cite{BPI2020}.
 Our approach to process mining is based on the work by
 Wil van der Aalst in his seminal paper titled simply
 ``Process Mining'' \cite{van2012},
-where process mining guidelines are detailed.
+while offered detailed process mining guidelines.
 A process mining implementation generally
 covers three main issues: (1) discovery, (2) conformance,
 and (3) enhancement.
 Our project focuses on discovery since it is the area
-that requires more effort and it is the most deterministic for the
+that requires the most effort and it is the most deterministic for the
 success of the analysis. We will also take a cursory
-look at conformance as both an aide to discovery and future work.
+look at conformance as both an aide to discovery and a motivation for
+future work.
 
 \subsection{Motivation}
 
 Publications on practical application of process mining are scarce,
-and our research paper aims to add support to this section. Our goal is
-to demonstrate the practicality of process mining analysis
+and our research paper aims to add support to this area. Our goal is
+to demonstrate the practicality of process mining and analysis
 in practice, in application to the real-life travel reimbursement problem
 as detailed earlier.
 
 Furthermore, we are very interested in the evaluation and application
-of a relatively new process mining technique based on
+of an emerging process mining approach based on
 \textsc{pm4py}, a Python process mining library
 developed by Berti et al.~\cite{BeZe2019}.
 According to the authors,
-\textsc{pm4py} is a modern, open-source, and emerging platform developed
+\textsc{pm4py} is a modern, open-source, and extensible platform developed
 specifically for the data science community. Prior to the turn of the
 millenium,
 there were hardly any tooling for process mining, but
 since then a slew of software tools, both open-source
 (\textsc{prom} and \textsc{apromore}) and commercial
 (\textsc{disco}, \textsc{celonis}, and \textsc{processgold}),
-have been developed. Yet, many were proprietary, hard to extend,
+have been developed for process mining.
+Yet, many were proprietary, hard to extend,
 or hidden behind graphical user interfaces.
-The mindset of process mining
-tooling contrasted greatly with the modern philosophy of data science R\&D,
+The conservative mindset of process mining
+tooling contrasted greatly with the modern philosophy of data science
+R\&D,
 which put significant emphasis on openness and extensibility.
 \textsc{pm4py} was developed to bridge the gap
-between process mining and modern data science
-capabilities including
+and bring process mining to mainstream data science
+capabilities such as
 \textsc{pandas}, \textsc{numpy}, \textsc{scikit-learn}.
 We whole-heartedly
-agree with the assessment of the authors, and we look further at opportunities
-that the \textsc{pm4py} approach brought forward, including
+agree with the assessment of the authors, and look forward to opportunities
+that the \textsc{pm4py} approach brought forth, including
 the adoption of modern and rapidly evolving machine learning
-functionalities to process mining.
+techniques to process mining.
 
 
 \subsection{Approach Summary}
 
-The document is structured as follows: Sections \ref{section-intro} and
+This document is structured as follows: Sections \ref{section-intro} and
 \ref{section-survey}
 offer an introduction to process mining and a literature survey.
 Sections \ref{section-technical}, \ref{section-methodology} and
@@ -194,7 +197,7 @@ and the objective is to provides useful information
 with implication on the business processes, organizations, and people involved.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.35\textwidth]{images/image2a.png}}
+\centerline{\includegraphics[width=0.45\textwidth]{images/image2a.png}}
 \caption{General outline of process mining approach.}
 \label{fig-outline}
 \end{figure}
@@ -235,8 +238,8 @@ detected problems.
 \subsection{Process Models}
 
 Many distinct data analysis approaches have been developed to discover
-processes from event logs. However, \textsc{petri net}s\footnote{and the
-equivalent BPMN models and process trees} have become a
+processes from event logs. However, \textsc{petri net}s\footnote{\textsc{petri net}s are also
+equivalent to \textsc{bpmn} models and process trees.} have become a
 widely adopted technique over other methods \cite{Cook1998} due to their
 intuitiveness, mathematical soundness, and ease of analysis.
 Another approach utilizes Unified
@@ -244,17 +247,18 @@ Modeling Language (\textsc{uml}) diagrams \cite{Sait2019}.
 In 2004, van der Wilst et al.~described the 
 a break-through algorithm in process mining
 called \textsc{alpha miner}\cite{van2004} which
-is capable of depicting event data logs into
-work-flow diagrams, which can be translated to \textsc{petri net}s.
-The success of \textsc{alpha miner} has inspired many follow-up publications,
+is capable of distilling event data logs into
+work-flow diagrams, which can then be translated to \textsc{petri net}s.
+The success of \textsc{alpha miner} has inspired many follow-up
+publications,
 including a popular model
-called \textsc{flexible heuristic miner} \cite{Weij2006}.
+called \textsc{heuristics miner} \cite{Weij2006}.
 One main characteristic of this
 algorithm is its high level of configurability and flexibility.
 In order to deal with the
 massive number of events that actual information systems generate,
 Burattin et al.~\cite{Bura2014} developed another extension to
-\textsc{heuristic miner} based on
+\textsc{heuristics miner} based on
 lossy counting, as well as a sliding window that effectively analyzes
 streams of real datasets.
 
@@ -270,9 +274,6 @@ in Dutch municipalities. Additionally, van del Aalst et al.~\cite{RoDJ2009}
 applied an analysis of organizations in another municipality process.
 Rozinat et al.~\cite{RoMa2009} evaluated process models in two different case
 studies on the public sector.
-Nonetheless, all these research
-applications were focused on validation and assessment,
-rather than to improve the process.
 
 Implementation of process mining approaches has also been done in
 the private domain. Distinct discovery approaches were
@@ -290,20 +291,22 @@ where the process bottlenecks are. We would start with a thorough analysis and
 cleaning of the event logs, and then
 build models that best capture the behavior of the
 process, making the proper tradeoff
-between robustness (does the model capture the intent of the process),
-and coverage (what fraction of the use cases are captured).
+between robustness (whether the model captures the intent of the process),
+and coverage (what fraction of the traces are modeled).
  Then, we will use the
-chosen models to answer the questions we have in mind.
+chosen models to answer the questions we hade in mind.
 
-We shall note that process mining is a relatively new techniques, and
+We shall note that process mining is a relatively new and unfamiliar
+technique, and
 as such we spent a disproportional amount of time ramping up the project.
-While we fully believe in the full potential of \textsc{pm4py} due to
+While we completely believe in the full potential of \textsc{pm4py} due to
 its focus on algorithmic discovery and availability
 on Python, it is
 essentially still an academic software in its nascent stage, and 
-hence suffers from instability. There is still plenty of room for
-improvement, such as a lack of control in visualization and
-presentation, scanty documentation, and signs of immaturity in API design.
+hence suffers from many issues such as software instability,
+limitation in visualization and presentation, scanty documentation,
+and immaturity in API design.  There is still plenty of room for
+improvement.
 
 \section{Methodology}
 \label{section-methodology}
@@ -322,58 +325,58 @@ an \textsc{xml}-based standard for event logs \cite{XES2021}, which can
 be easily parsed using \textsc{pm4py}.
 The events are organized as a two-level hierarchy as follows:
 An event log is made of a list of cases
-(also known as traces in technical
-term), and each case is made of a list of events. Cases and
+(also known as traces in research
+terminology), and each case is made of a list of timestamped events. Cases and
 events are both extensible constructs to allow for maximum flexibility in
 event modeling.
 
 The event logs provide a detailed record of the travel reimbursement process,
-including important attributes such as identification, resource,
+including important attributes such as identification, resources,
 timestamp, permits, payment and budgeting information, and event labels.
 Students or staff would submit their reimbursement application,
 provide suppport documentation (if traveling internationally), wait for
 approval and payment, and resubmit a corrected request if rejected.
 
-As the logs were imported into Python via \textsc{pm4py},
-they are represented as
+The logs that were imported into Python via 
+\textsc{pm4py} were converted into
 dataframes, a key construct of
 \textsc{pandas}, the popular Python Data Analysis Library. However, as
-dataframes are not hierarchical, \textsc{pm4py} flattene the log so that 
+dataframes are not hierarchical, \textsc{pm4py} flattened the logs so that 
 the enclosing case and the case attributes
-become attributes of an event. If
-there were $A_c$ attributes associated with a
-case, and $A_e$ event attributes in the
+became attributes of the event. If
+there were $A_C$ attributes associated with a
+case, and $A_E$ event attributes in the
 \textsc{xes} specification, after \textsc{pm4py} import, we would obtain a
 \textsc{pandas} dataframe 
-with $N$ events, each with a total of $A_c + A_e$ attributes.
+with $N$ events, each with a total of $A_C + A_E$ attributes.
 
 In our project,
 the domestic process log is organized differently than
 the international process log.  For domestic trips, employees would first
 complete the trip and then ask for reimbursement. On the other hand,
 the policy for international trips mandates that
-employees first obtain travel permits from the supervisor prior to
-commencing the trips.
+employees first obtain travel permits from the supervisors prior to
+commencing their trips.
 
-As a result, we are dealing with a more complex process in the case of
-international travel, and the formal specification that describes
+As a result, the reimbursement process for international travel is
+far more complex, and the formal specification that describes
 international cases also contain more fields.
-Specifically, domestic cases have 5 attributes
-each, and international cases have additional 13 attributes, together
-with the 5 attributes shared with domestic cases
+Specifically, while domestic cases only have 5 attributes
+each, international cases have 13 additional attributes, on top of
+the 5 attributes shared with domestic cases
 (\texttt{id}, \texttt{concept:name}, \texttt{BudgetNumber},
 \texttt{DeclarationNumber}, \texttt{Amount}), for a total of 18 attributes.
-Regardless of the type of trip,
+Regardless of the type of trips, however,
 the event in the \textsc{xes} hierarchy has the same 5 attributes
 (\texttt{id}, \texttt{org:resource}, \texttt{concept:name},
 \texttt{time:timestamp}, and \texttt{org:role}).
 After flattening, \textsc{pm4py} returned a
-domestic dataframe with $56437$ events and $5+5=10$ attributes, and
-an international dataframe with $72151$ events and $18+5=23$ attributes.
+domestic dataframe with $56437$ events and $10~(=5+5$) attributes, and
+an international dataframe with $72151$ events and $23~(=18+5$) attributes.
 To avoid namespace collision, all case attributes were prefixed with
 \texttt{case:} by \textsc{pm4py} (for example, the \texttt{id} field of a case
 became \texttt{case:id}). Please refer to Table
-\ref{table-event} for the complete list of attributes:
+\ref{table-event} for a complete list of all attributes:
 
 \begin{table}[htbp]
 \caption{XES Attributes for Events, and Domestic and Int'l Cases}
@@ -418,7 +421,7 @@ to the datasets:
 \subsection{Data Preprocessing I -- Missing Values}
 
 While we did not find any missing value per se (as far
-as what \textsc{pandas} is concerned), we did find columns with string values
+as \textsc{pandas} is concerned), we did find columns with string values
 \textsc{unknown} or \textsc{missing}. We
 carefully evaluated what to do with these attributes on a case-by-case
 basis. For example, we could drop the column (attribute), drop the row
@@ -554,16 +557,18 @@ the two events. Both models captured the vast majority of the important
 interactions very well and were reasonably easy to comprehend.
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.55\textwidth]{images/domestic.png}}
+\centerline{\includegraphics[width=0.60\textwidth]{images/domestic.png}}
 \caption{\textsc{dfg} Model for Domestic Reimbursement.}
 \label{fig-domestic}
 \end{figure*}
+\vspace{-1em}
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.55\textwidth]{images/international.png}}
+\centerline{\includegraphics[width=0.60\textwidth]{images/international.png}}
 \caption{\textsc{dfg} Model for International Reimbursement.}
 \label{fig-international}
 \end{figure*}
+\vspace{-1em}
 
 
 \subsection{Results}
