@@ -139,7 +139,7 @@ as detailed earlier.
 
 Furthermore, we are very interested in the evaluation and application
 of an emerging process mining approach based on
-\textsc{pm4py}, a Python process mining library
+\textsc{pm4py}, a \textsc{python} process mining library
 developed by Berti et al.~\cite{BeZe2019}.
 According to the authors,
 \textsc{pm4py} is a modern, open-source, and extensible platform developed
@@ -301,7 +301,7 @@ technique, and
 as such we spent a disproportional amount of time ramping up the project.
 While we completely believe in the full potential of \textsc{pm4py} due to
 its focus on algorithmic discovery and availability
-on Python, it is
+on \textsc{python}, it is
 essentially still an academic software in its nascent stage, and 
 hence suffers from many issues such as software instability,
 limitation in visualization and presentation, scanty documentation,
@@ -337,7 +337,7 @@ Students or staff would submit their reimbursement application,
 provide suppport documentation (if traveling internationally), wait for
 approval and payment, and resubmit a corrected request if rejected.
 
-The logs that were imported into Python via 
+The logs that were imported into \textsc{python} via 
 \textsc{pm4py} were converted into
 dataframes, a key construct of
 \textsc{pandas}, the popular Python Data Analysis Library. However, as
@@ -374,8 +374,8 @@ After flattening, \textsc{pm4py} returned a
 domestic dataframe with $56437$ events and $10~(=5+5$) attributes, and
 an international dataframe with $72151$ events and $23~(=18+5$) attributes.
 To avoid namespace collision, all case attributes were prefixed with
-\texttt{case:} by \textsc{pm4py} (for example, the \texttt{id} field of a case
-became \texttt{case:id}). Please refer to Table
+\texttt{case:} by \textsc{pm4py} (for example, the \texttt{concept:name} field of a case
+became \texttt{case:concept:name}). Please refer to Table
 \ref{table-event} for a complete list of all attributes:
 
 \begin{table}[htbp]
@@ -384,24 +384,24 @@ became \texttt{case:id}). Please refer to Table
 \begin{center}
 \begin{verbatim}
   XES Event Attributes (5 Total)
-    ---------------------------------------------------------
+    ----------------------------------------------------------
     id, org:resource, concept:name, time:timestamp, org:role
-    ---------------------------------------------------------
+    ----------------------------------------------------------
 
   XES Domestic Case Attributes (5 Total)
-    ---------------------------------------------------------
+    ----------------------------------------------------------
     id, concept:name, BudgetNumber, DeclarationNumber, Amount
-    ---------------------------------------------------------
+    ----------------------------------------------------------
 
   XES International Cases (18 fields)
-    ---------------------------------------------------------
-    Permit travel permit number, DeclarationNumber, Amount,
-    RequestedAmount, Permit TaskNumber, Permit BudgetNumber,
-    OriginalAmount, Permit ProjectNumber, concept:name,
-    Permit OrganizationalEntity, travel permit number,
-    Permit RequestedBudget, id, Permit ID, Permit id,
-    BudgetNumber, Permit ActivityNumber, AdjustedAmount        
-    ---------------------------------------------------------
+    ----------------------------------------------------------
+    id, concept:name, BudgetNumber, DeclarationNumber, Amount,
+    Permit travel permit number, RequestedAmount,
+    Permit TaskNumber, Permit BudgetNumber, OriginalAmount,
+    Permit ProjectNumber, Permit OrganizationalEntity,
+    travel permit number, Permit RequestedBudget, Permit ID,
+    Permit id, Permit ActivityNumber, AdjustedAmount        
+    ----------------------------------------------------------
 \end{verbatim}
 \end{center}
 \vspace{-1em}
@@ -420,8 +420,8 @@ to the datasets:
 
 \subsection{Data Preprocessing I -- Missing Values}
 
-While we did not find any missing value per se (as far
-as \textsc{pandas} is concerned), we did find columns with string values
+While we did not find any missing value \textit{per se} as far
+as \textsc{pandas} is concerned, we did find columns with string values
 \textsc{unknown} or \textsc{missing}. We
 carefully evaluated what to do with these attributes on a case-by-case
 basis. For example, we could drop the column (attribute), drop the row
@@ -461,7 +461,7 @@ with the
 missing permit accounting for 95\% of such reduction. The number of
 columns was reduced from 23 to 19, since we dropped
 several permit-related columns that are duplicates.
-Similarly, the domestic dataframe was also modified to a much small extent.
+Similarly, the domestic dataframe was also modified, but to a much small extent.
 The number of events was reduced from 55087, a mere 2\% drop, and the
 number of columns stayed the same.
 
@@ -470,25 +470,25 @@ number of columns stayed the same.
 Process models that can explain all possible event traces could be
 arbitrarily complex. For example, obviously we would expect reimbursement to
 be paid out only after the request was approved. But what if there is
-a trace with a missing approval due to erroneous logging? A process model
-built to handle 100\% of traces must handle a flow with
-payment before request, however bizzare such trace is.
+a trace with completed payment that was approved only after the fact?
+A process model
+built to handle 100\% of traces must handle a sequence with
+payment before approval, however bizzare that may be.
 Not only would the model be more complex and unwieldy,
 it would also be incorrect and fail our objective.
 
-A naive approach would be to remove events that are uncommon, but doing so may
-not be sufficient. Consider the previous example;
+A naive approach would be to remove events that are uncommon, but doing so
+would not be sufficient. Consider the previous example;
 while \textsc{request approved} that happened after \textsc{payment handled}
 might be a rare sequence, neither of these events were rare.
 
 In \textsc{pm4py} terminology, the variants of an event log is the
-union of all possible sequences of event execution (ignoring all but the
-event labels). For example, there were
+union of all possible sequences of event \textit{labels}.
+For example, there were
 68 variants in the domestic log, and 464 variants in the international log.
 In fact, the above example
-points to the need to remove traces that are uncommon. Clearly, it could
-be beneficial to have the choice to build the process model based on
-only the most popular traces. Indeed, this was an important part of our
+points to the benefit of building the process model based on
+only the most popular traces.  Indeed, this was an important part of our
 methodology and we shall take a closer look in the next section.
 
 \section{Models and Results}
@@ -501,18 +501,20 @@ ready to build the actual process model.
 \subsection{Choice of Model}
 
 We must first answer the
-question of what formal model to use. Our choices include \textsc{bpmn}\footnote{\textsc{bpmn} stands for Business Process Model Notation}  model,
+question of what formal model to use. Our choices include 
+the \textsc{bpmn} model,
 process tree, \textsc{petri net}, and Directly-Follows Graph (\textsc{dfg}). The
 first three are mathematically equivalent and inter-changeable. On the other
-hand, \textsc{dfg} shows a different view of \textsc{bpmn} graph constructed by aggregrating all possible link
+hand, \textsc{dfg} shows a different view of \textsc{bpmn} graph constructed by aggregrating all possible links
 between any pair of events that follows each other.
 
 There are pros and cons in choosing \textsc{petri net} vs \textsc{dfg}. \textsc{dfg}s can be constructed
 directly from the event logs, and are simple to understand. \textsc{petri net}s (as well
 as the equivalents) can only be generated heuristically, for example, 
-through inductive or heuristics miners (which \textsc{pm4py} supports).
-The difference mainly lies on how concurrency is handled. For example,
-say there are two activities $X$ and $Y$ that are sandwiched between
+through \textsc{alpha miner} or \textsc{heuristics miner}.
+The difference mainly lies in how concurrency is handled. For example,
+say there are two concurrent
+activities $X$ and $Y$ that are sandwiched between
 $A$ and $B$. In other words, the following are both legitimate sequence
 of executions:
 
@@ -529,14 +531,15 @@ instead concurrent events, \textsc{dfg} would not be able to discern that, becau
 all it saw was $Y$ directly follows $X$ in the first example, and
 $X$ directly follows $Y$ in the second. Thus, concurrency would
 show up in \textsc{dfg}s as tight loops between two activities, yet there is no
-way to prove that tight loops imply concurrency. If indeed \textsc{dfg}s
-become too complicated, they will confuse rather than aide reasoning.
+way to prove that tight loops imply concurrency. \textsc{dfg}s tend
+to become too complicated very quickly as the model size increases,
+causing confusion and providing no insight.
 
-For our purpose, however, we still believe 
+For our purpose, however, we still believe  \textsc{dfg}
 is the preferred approach as the statistics on the edges of a \textsc{dfg} can be
-made readily available, and more easily reasoned with. We just need to make
-sure we have a model that is not too complicated.
-This speaks to the importance of limiting the model size, which we shall
+made readily available, and more easily reasoned with. We do need to make
+sure the model sizes are limited, which
+we shall
 discuss next.
 
 \subsection{Choice of Model Size}
@@ -546,8 +549,8 @@ We did experiment with different values of $k$, where $k$ is the number of
 top variants to be used to build the \textsc{dfg}. We
 evaluated many factors, though more qualitatively than otherwise,
 and came to the conclusion
-that we would achieve the best balance between coverage and robustness if
-we keep approximately 15 to 25\% of the top variants, depending on data
+that the best balance between coverage and robustness is achieved if
+we kept approximately 15 to 25\% of the top variants, depending on the data
 (higher for domestic, and lower for international). Figures~\ref{fig-domestic}
 and \ref{fig-international} shows the \textsc{dfg} models we picked for
 domestic and international reimbursement respectively. In each figure,
@@ -557,19 +560,16 @@ the two events. Both models captured the vast majority of the important
 interactions very well and were reasonably easy to comprehend.
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.60\textwidth]{images/domestic.png}}
+\centerline{\includegraphics[width=0.55\textwidth]{images/domestic.png}}
 \caption{\textsc{dfg} Model for Domestic Reimbursement.}
 \label{fig-domestic}
 \end{figure*}
-\vspace{-1em}
 
 \begin{figure*}[htbp]
-\centerline{\includegraphics[width=0.60\textwidth]{images/international.png}}
+\centerline{\includegraphics[width=0.55\textwidth]{images/international.png}}
 \caption{\textsc{dfg} Model for International Reimbursement.}
 \label{fig-international}
 \end{figure*}
-\vspace{-1em}
-
 
 \subsection{Results}
 
@@ -578,17 +578,20 @@ we can now answer the question:
 Where are the bottlenecks in the process of a travel declaration?
 
 The biggest bottleneck is the supervisor activities for both international
-and domestic declarations.  For the supervisor to do the final approval and
+and domestic declarations.  For the supervisor to complete
+ the final approval and
 request payment, it takes an average of 4 to 5 days.
 To find such bottleneck, we would identify that
 links with both high frequency \textit{and} long duration. Since the models
 are simple enough, we were able to visually inspect the models and identify
-such link. We did add code to work around \textsc{pm4py} and
-automatically identify such links.
+such link.
+More recently, we were able to partially automate
+such functionality by examining the dataframes directly, though it would be
+preferable to do so within \textsc{pm4py}.
 
 On the other hand, if we
-were to identify one activity, \textsc{Payment Handled}
-is the biggest bottleneck. That said,
+were to identify one activity, \textsc{payment handled}
+is the biggest bottleneck. However,
 it might be outside of the organization’s control and may be more of a
 financial institution issue.
 
@@ -613,48 +616,51 @@ interesting to investigate further into conformance checking to see how
 well the data fits the model, while in turn would help us evaluate and
 improve on the model.
 
-This can be done with a method called token-based replay (\textsc{tbr}) on the
-\textsc{petri net} converted from the process model. For each trace, we would try
-to see if it can be simulated on the \textsc{petri net} which can be done
-precisely in a mathematically sound
+This can be done with a method called token-based replay on the
+\textsc{petri net} converted from the process model. We would simulate
+each trace on the \textsc{petri net} which can be done
+in a precise and mathematically sound
 way. We define the total fitness
 simply as the percentage of traces that fit the model. Other techniques
 we can apply are 
 alignment analysis and behavior analysis, though
 they both come at the expense of higher runtime complexity.
-Together these techniques can be used to better identify the hows and whys of
+Together these techniques can be used to better identify the
+\textit{hows} and \textit{whys} of
 non-conformance, and to build better models.
+
 In conformance analysis,
-getting to 100\% total fitness is not a desired goal, as explained earlier.
-Instead, what we seek is a tradeoff. On the one hand, you want the model
+getting to 100\% total fitness is not necessarily
+a desired goal, as explained earlier.
+Instead, what we seek is a tradeoff. On the one hand, we want the model
 to be robust enough to elegantly explain the process. On the other hand,
 we do not want to over-build a model so complex that it is impossible to
 reason about.
 
 Let's use our specific problem as an example. We
-ran an experiment to examine the tradeoff between fitness and model
+ran an experiment to examine the tradeoff between total fitness and model
 complexity. We built the model multiple times with \textsc{inductive miner},
 each time on a different value of $k$, where $k$ is the number of top
 variants we
 used to build the model, and we recorded the total fitness via conformance
-check, as well as an estimate the complexity of the model computed using
-custom Python code.
+check, as well as an estimate of the model complexity computed using
+custom \textsc{python} code.
 In Figure~\ref{fig-tradeoff}, the
 red line is the total fitness, and the blue line is the size of the
 model. We see that, as we include more top variants, the model gets more
 complex, but the fitness also improves. If we would include only the top
 3 variants, we can already explain 90\% of the traces. But if we blindly
 crank up the knob to 
-18 variants, the model would now account for 99\% of the traces, but the
-it is 5 times bigger, and much harder to understand.
+18 variants, the model would now account for 99\% of the traces, but
+it is also 5 times bigger, and much harder to understand.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=0.40\textwidth]{images/tradeoff.png}}
+\centerline{\includegraphics[width=0.46\textwidth]{images/tradeoff.png}}
 \caption{Fitness and Complexity vs Top $k$ Variants.}
 \label{fig-tradeoff}
 \end{figure}
 
-The sweat spots happen at $k = 5$, which can explain 96\% of the traces.
+The sweet spot happens at $k = 5$, which can explain 96\% of the traces.
 Moreover,
 it was able to properly capture the submission, approval, rejection,
 resubmission, and the final payment. It represents the best tradeoff
@@ -681,7 +687,9 @@ This provides
 important clues to administrators and employees alike about the time
 frame of payment in the best-case scenario. We are also interested in
 detecting non-compliance \textit{as it happens} and sending alerts to
-administrators.
+administrators. The availability of many data science and machine learning
+tools on \textsc{python} certainly makes these future works with
+\textsc{pm4py} much more plausible.
 
 \section{Conclusion}
 \label{section-conclusion}
@@ -713,14 +721,14 @@ data preparation, the main body of work on process mining, prepared
 and gave the main part of the presentation.
 
 \item
-\textbf{Carlos Hernandez} -- wrote the first draft of the term paper,
+\textbf{Carlos Hernandez} -- wrote the initial draft of the term paper,
 completed with extensive literature survey, project outline,
 report template, as well as a significant portion of the writeup.
 
 \item
 \textbf{Hardy Leung} -- did an early investigation on \textsc{pm4py}, and
 worked on conformance analysis. He also migrated the paper to the IEEE
-template, and wrote the second half of the term paper.
+template, and wrote the majority of this paper.
 
 \item
 \textbf{Divyam Sobti} -- worked closely with Martin A.~on data preparation and
